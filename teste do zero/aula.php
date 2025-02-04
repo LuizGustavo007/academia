@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("iisss", $aluno_cod, $instrutor_cod, $aula_tipo, $aula_data, $aula_horario);
    
     if ($stmt->execute()) {
-        // echo "<script>alert('Aula agendada com sucesso!'); window.location='agendamento.php';</script>";
+        echo "<script>alert('Aula agendada com sucesso!'); window.location='agendamento.php';</script>";
     } else {
         echo "<script>alert('Erro ao agendar a aula!');</script>";
     }
