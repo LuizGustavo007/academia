@@ -1,0 +1,119 @@
+/* Estilização geral */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff8c00, #ff4500);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 15px;
+}
+
+/* Botão de voltar */
+.voltar-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: white;
+    color: #ff4500;
+    font-weight: bold;
+    border: 2px solid #ff4500;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.voltar-btn:hover {
+    background: #ff4500;
+    color: white;
+}
+
+/* Container do formulário */
+.cadastro-container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Título */
+.cadastro-container h2 {
+    margin-bottom: 20px;
+    color: #ff4500;
+    font-size: 24px;
+}
+
+
+.cadastro-container input{
+    width: 88%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ff4500;
+    border-radius: 6px;
+    font-size: 16px;
+}
+.cadastro-container select {
+    width: 94%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ff4500;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+/* Botão de cadastro */
+.cadastro-container input[type="submit"] {
+    width: 95%;
+    background: #ff4500;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.cadastro-container input[type="submit"]:hover {
+    background: #e63900;
+}
+
+/* Ocultar campos dinâmicos por padrão */
+#instrutor_fields, #aluno_fields {
+    margin-top: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .cadastro-container {
+        padding: 20px;
+    }
+
+    .voltar-btn {
+        top: 10px;
+        left: 10px;
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .cadastro-container h2 {
+        font-size: 22px;
+    }
+
+    .cadastro-container input,
+    .cadastro-container select {
+        font-size: 14px;
+    }
+
+    .cadastro-container input[type="submit"] {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

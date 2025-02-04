@@ -56,35 +56,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/cadastro.css">
+        <title>Document</title>
+    </head>
+    <body>
+        <a href="login.php" class="voltar-btn">← Voltar</a>
 
-<form method="POST" action="cadastro.php">
-    Nome: <input type="text" name="nome" required><br>
-    Senha: <input type="password" name="senha" required><br>
-    Tipo: 
-    <select name="tipo" id="tipo" required>
-        <option value="aluno">Aluno</option>
-        <option value="instrutor">Instrutor</option>
-    </select><br>
+        <div class="cadastro-container">
+            <h2>Cadastro</h2>
+            <form method="POST" action="cadastro.php">
+                <input type="text" name="nome" placeholder="Nome" required>
+                <input type="password" name="senha" placeholder="Senha" required>
+                
+                <select name="tipo" id="tipo" required>
+                    <option value="aluno">Aluno</option>
+                    <option value="instrutor">Instrutor</option>
+                </select>
 
-    <!-- Campos específicos para instrutor -->
-    <div id="instrutor_fields" style="display: none;">
-        Especialidade: <input type="text" name="especialidade" placeholder="Ex: Zumba, Pilates"><br>
-    </div>
+                <!-- Campos específicos para instrutor -->
+                <div id="instrutor_fields" style="display: none;">
+                    <input type="text" name="especialidade" placeholder="Especialidade (Ex: Zumba, Pilates)">
+                </div>
 
-    <!-- Campos específicos para aluno -->
-    <div id="aluno_fields">
-        CPF: <input type="text" name="cpf" placeholder="Digite o CPF"><br>
-        Endereço: <input type="text" name="endereco" placeholder="Digite o endereço"><br>
-    </div>
+                <!-- Campos específicos para aluno -->
+                <div id="aluno_fields">
+                    <input type="text" name="cpf" placeholder="CPF">
+                    <input type="text" name="endereco" placeholder="Endereço">
+                </div>
 
-    <input type="submit" value="Cadastrar">
-</form>
-
-<script>
-// Mostrar/esconder campos com base na seleção do usuário
-document.querySelector('#tipo').addEventListener('change', function() {
-    var tipo = this.value;
-    document.getElementById('instrutor_fields').style.display = (tipo === 'instrutor') ? 'block' : 'none';
-    document.getElementById('aluno_fields').style.display = (tipo === 'aluno') ? 'block' : 'none';
-});
-</script>
+                <input type="submit" value="Cadastrar">
+            </form>
+        </div>
+        <script>
+            // Mostrar/esconder campos com base na seleção do usuário
+            document.querySelector('#tipo').addEventListener('change', function() {
+                var tipo = this.value;
+                document.getElementById('instrutor_fields').style.display = (tipo === 'instrutor') ? 'block' : 'none';
+                document.getElementById('aluno_fields').style.display = (tipo === 'aluno') ? 'block' : 'none';
+            });
+        </script>
+    </body>
+</html>

@@ -1,4 +1,3 @@
-/* Estilização geral */
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #ff8c00, #ff4500);
@@ -9,8 +8,13 @@ body {
     margin: 0;
     padding: 15px;
 }
-
-/* Container do formulário */
+form a{
+    text-decoration: none;
+    color: #ff8c00;
+}
+form a:hover{
+    color: #e63900;
+}
 .login-container {
     background: white;
     padding: 30px;
@@ -20,15 +24,11 @@ body {
     max-width: 350px;
     text-align: center;
 }
-
-/* Título */
 .login-container h2 {
     margin-bottom: 20px;
     color: #ff4500;
     font-size: 24px;
 }
-
-/* Campos do formulário */
 .login-container input {
     width: 88%;
     padding: 12px;
@@ -38,8 +38,6 @@ body {
     border-radius: 6px;
     font-size: 16px;
 }
-
-/* Botão de login */
 .login-container input[type="submit"] {
     width: 95%;
     background: #ff4500;
@@ -51,12 +49,9 @@ body {
     padding: 12px;
     font-size: 16px;
 }
-
 .login-container input[type="submit"]:hover {
     background: #e63900;
 }
-
-/* Responsividade */
 @media (max-width: 480px) {
     .login-container {
         padding: 20px;
