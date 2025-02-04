@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04/02/2025 às 00:27
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Tempo de geração: 04-Fev-2025 às 12:32
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `aluno`
+-- Estrutura da tabela `aluno`
 --
 
 CREATE TABLE `aluno` (
@@ -35,23 +35,32 @@ CREATE TABLE `aluno` (
   `aluno_telefone` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Extraindo dados da tabela `aluno`
+--
+
+INSERT INTO `aluno` (`aluno_cod`, `aluno_nome`, `aluno_cpf`, `aluno_endereco`, `aluno_telefone`) VALUES
+(1, 'fabio', '3345', 'rua', '');
+
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `aula`
+-- Estrutura da tabela `aula`
 --
 
 CREATE TABLE `aula` (
   `aula_cod` int(11) NOT NULL,
   `aula_tipo` enum('boxe','natacao','musculacao','yoga','crossfit','aerobico','pilates') NOT NULL,
   `aula_data` date NOT NULL,
-  `aula_horario` time(5) NOT NULL
+  `aula_horario` time(5) NOT NULL,
+  `fk_instrutor_cod` int(11) NOT NULL,
+  `fk_aluno_cod` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `instrutores`
+-- Estrutura da tabela `instrutores`
 --
 
 CREATE TABLE `instrutores` (
@@ -60,10 +69,18 @@ CREATE TABLE `instrutores` (
   `instrutor_especialidade` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Extraindo dados da tabela `instrutores`
+--
+
+INSERT INTO `instrutores` (`instrutor_cod`, `instrutor_nome`, `instrutor_especialidade`) VALUES
+(2, 'mariana', 'Musculação'),
+(3, 'adriano', 'musculação');
+
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuarios`
+-- Estrutura da tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -74,42 +91,64 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`usuario_cod`, `usuario_nome`, `usuario_senha`, `usuario_tipo`) VALUES
+(1, 'fabio', '$2y$10$CQhi9NKESCyaxTROW3CCVezvvXi2lM.X8ND1mBEScnyRSlXNycJra', 'aluno'),
+(2, 'mariana', '$2y$10$yAXsunn/K3ughRqWZ1wupu8s56Sp9ydfJfqBBNABQWmVX/7FW0Jfu', 'instrutor'),
+(3, 'adriano', '$2y$10$kys9OMCEbtw7Y559mJbKUuGkcFAFecB6E3IfCdXwNurCV3g5JYN.K', 'instrutor');
+
+--
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `aluno`
+-- Índices para tabela `aluno`
 --
 ALTER TABLE `aluno`
   ADD PRIMARY KEY (`aluno_cod`);
 
 --
--- Índices de tabela `aula`
+-- Índices para tabela `aula`
 --
 ALTER TABLE `aula`
-  ADD PRIMARY KEY (`aula_cod`);
+  ADD PRIMARY KEY (`aula_cod`),
+  ADD KEY `fk_instrutor` (`fk_instrutor_cod`),
+  ADD KEY `fk_aluno` (`fk_aluno_cod`);
 
 --
--- Índices de tabela `instrutores`
+-- Índices para tabela `instrutores`
 --
 ALTER TABLE `instrutores`
   ADD PRIMARY KEY (`instrutor_cod`);
 
 --
--- Índices de tabela `usuarios`
+-- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`usuario_cod`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_cod` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `usuario_cod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `aula`
+--
+ALTER TABLE `aula`
+  ADD CONSTRAINT `fk_aluno` FOREIGN KEY (`fk_aluno_cod`) REFERENCES `aluno` (`aluno_cod`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_instrutor` FOREIGN KEY (`fk_instrutor_cod`) REFERENCES `instrutores` (`instrutor_cod`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
