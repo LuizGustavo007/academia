@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 <div class="login-container">
     <h2>Login</h2>
-    <form method="POST" action="login.php">
+    <form method="POST" action="index.php">
         <input type="text" name="nome" placeholder="Nome" required>
         <input type="password" name="senha" placeholder="Senha" required>
         <input type="submit" value="Login">
