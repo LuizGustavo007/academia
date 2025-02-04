@@ -2,15 +2,14 @@
 include "db/conexao.php";
 
 // Consulta os agendamentos com os detalhes do aluno e do instrutor
-$sql = "SELECT 
-            aula.aula_cod, 
-            aluno.aluno_nome, 
-            instrutores.instrutor_nome, 
-            instrutores.instrutor_especialidade, 
-            aula.aula_tipo, 
-            aula.aula_data, 
-            aula.aula_horario, 
-            aula.aula_status
+$sql = "SELECT
+            aula.aula_cod,
+            aluno.aluno_nome,
+            instrutores.instrutor_nome,
+            instrutores.instrutor_especialidade,
+            aula.aula_tipo,
+            aula.aula_data,
+            aula.aula_horario
         FROM aula
         INNER JOIN aluno ON aula.fk_aluno_cod = aluno.aluno_cod
         INNER JOIN instrutores ON aula.fk_instrutor_cod = instrutores.instrutor_cod
@@ -38,7 +37,6 @@ $result = $conn->query($sql);
                 <th>Tipo da Aula</th>
                 <th>Data</th>
                 <th>Horário</th>
-                <th>Status</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -51,13 +49,10 @@ $result = $conn->query($sql);
                     <td><?= htmlspecialchars($row["aula_tipo"]); ?></td>
                     <td><?= htmlspecialchars($row["aula_data"]); ?></td>
                     <td><?= htmlspecialchars($row["aula_horario"]); ?></td>
-                    <td><?= htmlspecialchars($row["aula_status"]); ?></td>
                     <td>
                         <a href="editar_aula.php?id=<?= $row['aula_cod']; ?>">✏️ Editar</a>
                         <a href="excluir_aula.php?id=<?= $row['aula_cod']; ?>" onclick="return confirm('Tem certeza que deseja excluir?');">❌ Excluir</a>
-                        <?php if ($row["aula_status"] == "pendente") { ?>
-                            <a href="concluir_aula.php?id=<?= $row['aula_cod']; ?>">✅ Concluir</a>
-                        <?php } ?>
+                       
                     </td>
                 </tr>
             <?php } ?>
