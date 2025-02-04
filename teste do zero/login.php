@@ -35,9 +35,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="login-container">
+    <h2>Login</h2>
+    <form method="POST" action="login.php">
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="password" name="senha" placeholder="Senha" required>
+        <input type="submit" value="Login">
+    </form>
+</div>
+</body>
+</html>
 
-<form method="POST" action="login.php">
-    Nome: <input type="text" name="nome" required><br>
-    Senha: <input type="password" name="senha" required><br>
-    <input type="submit" value="Login">
-</form>
